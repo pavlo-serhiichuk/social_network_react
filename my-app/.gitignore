@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# new files
+misc.xml
+module.xml
+social_network_react.xml
 # testing
 /coverage
 
