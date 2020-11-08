@@ -1,0 +1,29 @@
+.nav{
+    grid-area: nav;
+    display: grid;
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    background-color: rgba(213, 213, 213, 0.22);
+}
+
+.nav__item {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    padding: 5px 0;
+}
+
+.nav__item:hover {
+    color: #727272;
+}
+
+/*.fa-user:before, .fa-envelope-open::before, .fa-play-circle::before, .fa-file-alt::before {*/
+/*    padding: 0 5px;*/
+/*    width: 5px;*/
+/*    font-weight: 100;*/
+/*}*/
+
+/*.fa, .fas {*/
+/*    font-weight: 200;*/
+/*}*/
