@@ -12,4 +12,8 @@ code {
     monospace;
 }
 
-
+.dialog, .music, .news, .profile, .settings {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgba(213, 213, 213, 0.22);
+}

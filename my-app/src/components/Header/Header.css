@@ -1,7 +1,13 @@
 .header{
-    grid-area: header;
+    position: fixed;
+    width: 100%;
     background-color: #8dbd49;
-    border-radius: 0 0 10px 10px;
-    height: 20px;
-    padding: 15px 30px;
+    height: 45px;
+}
+.header-content {
+    width: 71%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 20fr 1fr;
+    padding-top: 10px;
 }

@@ -1,11 +1,16 @@
-.App {
+
+.wrapper {
   margin: 0 auto;
+}
+
+.wrapper_content {
+  margin: 0 auto;
+  padding-top: 60px;
   display: grid;
   width: 850px;
   grid-template-columns: 200px 650px;
-  grid-template-areas: "header header"
-                        "nav profile";
   grid-gap: 10px;
 }
+
 
 

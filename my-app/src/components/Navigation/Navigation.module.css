@@ -1,20 +1,26 @@
 .nav{
-    grid-area: nav;
     display: grid;
+    grid-auto-rows: max-content;
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
     background-color: rgba(213, 213, 213, 0.22);
+
+    height: 115px;
 }
 
-.nav__item {
+a{
     text-decoration: none;
     color: black;
     font-weight: 400;
     padding: 5px 0;
 }
 
-.nav__item:hover {
+a.active {
+    color: #5e5b63;
+}
+
+a:hover {
     color: #727272;
 }
 
