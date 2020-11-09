@@ -8,7 +8,7 @@
   padding-top: 60px;
   display: grid;
   width: 850px;
-  grid-template-columns: 200px 650px;
+  grid-template-columns: 1fr 5fr;
   grid-gap: 10px;
 }
 

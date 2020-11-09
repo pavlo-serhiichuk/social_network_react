@@ -1,0 +1,16 @@
+.create-post {
+    border-bottom: 1px solid rgba(23, 23, 23, 0.11);
+    padding: 10px 0 15px;
+}
+
+.enter-post {
+    width: 80%;
+    height: 25px;
+    margin: 0 10px;
+}
+
+.share-post {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}

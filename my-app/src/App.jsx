@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/NavLinks/Profile/Profile";
-import Dialog from "./components/NavLinks/Dialog/Dialog";
+import Dialogs from "./components/NavLinks/Dialogs/Dialogs";
 import Music from "./components/NavLinks/Music/Music";
 import News from "./components/NavLinks/News/News";
 import Settings from "./components/NavLinks/Settings/Settings";
@@ -19,7 +19,7 @@ function App() {
                     <Navigation/>
                     <div>
                         <Route path="/profile" component={Profile}/>
-                        <Route path="/dialog" component={Dialog}/>
+                        <Route path="/dialog" component={Dialogs}/>
                         <Route path="/music" component={Music}/>
                         <Route path="/news" component={News}/>
                         <Route path="/settings" component={Settings}/>

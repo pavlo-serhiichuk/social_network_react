@@ -2,27 +2,21 @@ import React from 'react'
 import s from './Navigation.module.css'
 import {NavLink, Router} from "react-router-dom";
 
-const navStyle = `${s.active}`;
-
 export default function Navigation() {
     return (
-            <nav className={s.nav}>
-                <div className={navStyle}>
-                    <NavLink to="/profile" activeClassName={s.active}>My profile </NavLink>
-                </div>
-                <div className={navStyle}>
-                    <NavLink to="/dialog" activeClassName={s.active}>Messages</NavLink>
-                </div>
-                <div className={navStyle}>
-                    <NavLink to="/music" activeClassName={s.active}>Music</NavLink>
-                </div>
-                <div className={navStyle}>
-                    <NavLink to="/news">News</NavLink>
-                </div>
-                <div className={navStyle}>
-                    <NavLink to="/settings" activeClassName={s.active}>Settings</NavLink>
-                </div>
-            </nav>
+        <nav className={s.navigation}>
+            <div className={s.itemsContainer}>
+                <NavLink to="/profile" activeClassName={s.active}>My profile </NavLink>
+                <NavLink to="/dialog" activeClassName={s.active}>Messages</NavLink>
+                <NavLink to="/music" activeClassName={s.active}>Music</NavLink>
+                <NavLink to="/news">News</NavLink>
+                <NavLink to="/settings" activeClassName={s.active}>Settings</NavLink>
+            </div>
+            <div className={s.addEvent}>
+                Add event
+                Add event
+            </div>
+        </nav>
     )
 
 }
