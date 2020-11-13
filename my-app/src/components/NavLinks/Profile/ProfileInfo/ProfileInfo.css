@@ -21,5 +21,11 @@
 
 .info-field {
     color: #5e5b63;
-    font-size: 19px;
+    font-size: 15px;
+}
+
+.status {
+    width: 150px;
+    border: none;
+    background-color: rgba(213, 213, 213, 0);
 }

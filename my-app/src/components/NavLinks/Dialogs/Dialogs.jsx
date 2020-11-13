@@ -1,38 +1,36 @@
 import React from 'react'
 import './Dialogs.css'
-import {NavLink} from "react-router-dom";
+import Message from './Message/Message'
+import UserDialog from './UserDialog/UserDialog'
 
-const UserDialog = (props) => {
-    const path = '/dialog/' + props.id
-    return (
-        <div className="user-dialog">
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-};
+export default function Dialogs(props) {
 
-const Message = (props) => {
-    return (
-        <div className='message'>
-            {props.content}
-        </div>
-    )
-}
+    let AllDialogs = props.state.dialogs.map(d => <UserDialog key={d.id} id={d.id} name={d.name} />)
+    let AllMessages = props.state.messages.map(m => <Message key={m.id} message={m.message}/>)
 
-export default function Dialogs() {
+    let postInfo = React.createRef()
+
+    const addPost = () => {
+        let text = postInfo.current.value
+        alert(text)
+    }
+
     return (
         <div className="dialogs">
             <div className="users-dialogs">
-                <UserDialog id="1" name="Li"/>
-                <UserDialog id="2" name="Lo"/>
-                <UserDialog id="3" name="Pi"/>
-                <UserDialog id="4" name="Si"/>
+                {AllDialogs}
             </div>
             <div className="messages">
-                <Message content="Hello!"/>
-                <Message content="Hi!"/>
-                <Message content="Hello!"/>
-                <Message content="Hello!"/>
+                <div>
+                    <div className="create-post">
+                        <img className="post-avatar"
+                             src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"/>
+                        <input ref={postInfo} className='enter-post' type="text" placeholder='Share your thoughts...'/>
+                        <button onClick={addPost} className='share-post fas fa-paper-plane'>
+                        </button>
+                    </div>
+                </div>
+                {AllMessages}
             </div>
         </div>
     )

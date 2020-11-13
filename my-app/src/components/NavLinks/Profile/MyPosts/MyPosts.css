@@ -4,13 +4,27 @@
 }
 
 .enter-post {
-    width: 80%;
+    width: 70%;
     height: 25px;
     margin: 0 10px;
+    border-radius: 20px;
+    outline: none;
+    padding: 0 10px;
+    border: 1px solid silver;
 }
 
 .share-post {
     border-radius: 50%;
     height: 30px;
     width: 30px;
+    outline: none;
+    border: 1px solid silver;
+}
+
+.share-post:hover {
+    background-color: rgba(172, 214, 93, 0.64);
+}
+
+.share-post:active {
+    background-color: rgba(127, 163, 74, 0.64);
 }

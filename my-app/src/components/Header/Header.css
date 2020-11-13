@@ -5,9 +5,9 @@
     height: 45px;
 }
 .header-content {
-    width: 71%;
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: 20fr 1fr;
+    grid-template-columns: 1fr 5fr;
     padding-top: 10px;
+    margin: 0 auto;
+    width: 850px;
 }

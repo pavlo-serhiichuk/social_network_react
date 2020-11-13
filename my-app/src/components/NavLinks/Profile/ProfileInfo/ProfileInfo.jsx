@@ -13,7 +13,7 @@ const UserInfo = (props) => {
             <div className="info-field">Birthday:</div>
             <div className="birthday">{props.birthday}</div>
             <div className="info-field">Status:</div>
-            <div className="status">{props.status}</div>
+            <div className="status" type="text">I'm okay</div>
             </div>
         </div>
     )

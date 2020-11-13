@@ -1,0 +1,23 @@
+.post {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.11)}
+
+.post-avatar {
+    width: 50px;
+
+}
+
+.post-and-likes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.likes{
+    cursor: pointer;
+    border: 1px solid silver;
+    border-radius: 4px;
+    font-size: 15px;
+    padding: 2px;
+    margin-bottom: 2px;
+}
