@@ -2,6 +2,7 @@ import React from 'react'
 import './Profile.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import Dialogs from "../Dialogs/Dialogs";
 
 export default function Profile(props) {
     return (
@@ -9,8 +10,7 @@ export default function Profile(props) {
             <ProfileInfo/>
             <MyPosts posts={props.profilePage.posts}
                      newPostText={props.profilePage.newPostText}
-                     updateNewPostText={props.updateNewPostText}
-                     addPost={props.addPost}
+                     dispatch={props.dispatch}
             />
         </div>
     )

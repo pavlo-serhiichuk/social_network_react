@@ -10,7 +10,7 @@ import Settings from "./components/NavLinks/Settings/Settings";
 import React from "react";
 
 
-function App(props) {
+function App(props) { //props - объект для передачи данных
     return (
             <div className="wrapper">
                 <Header/>
@@ -19,13 +19,16 @@ function App(props) {
                     <div>
                         <Route path="/profile" render={() => <Profile
                             profilePage={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}
+                            dispatch={props.dispatch}
                         />}
 
                         />
                         <Route path="/dialogs" render={() => <Dialogs
-                            state={props.state.dialogsPage}/>}
+                            dialogsPage={props.state.dialogsPage}
+                            dispatch={props.dispatch}
+                            // addMessage={props.addMessage}
+                            // updateMessage={props.updateMessage}
+                        />}
                         />
                         <Route path="/music" render={() => <Music/>}/>
                         <Route path="/news" render={() => <News/>}/>

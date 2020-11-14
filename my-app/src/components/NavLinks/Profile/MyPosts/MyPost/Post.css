@@ -3,7 +3,8 @@
     grid-template-columns: 1fr 10fr;
     border-bottom: 1px solid rgba(23, 23, 23, 0.11)}
 
-.post-avatar {
+.little-avatar {
+    margin-top: 5px;
     width: 50px;
 
 }
