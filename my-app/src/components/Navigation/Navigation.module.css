@@ -1,7 +1,7 @@
 .navigation{
 }
 
-.itemsContainer, .addEvent {
+.itemsContainer, .addEventContainer {
     padding: 10px;
     margin: 0;
     display: grid;
@@ -12,11 +12,34 @@
 
 }
 
-.addEvent{
+.addEventContainer{
     margin-top: 10px;
-
+    padding: 0;
+    background-color: #fff;
 }
 
+.addEvent {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+}
+.addEvent:hover {
+    background-color: rgba(213, 213, 213, 0.42);
+
+}
+.addEvent:active {
+    background-color: rgba(213, 213, 213, 0.82);
+
+}
+.addEvent > p {
+    margin: 0;
+    padding: 5px;
+    font-size: 17px;
+}
 a{
     text-decoration: none;
     color: black;

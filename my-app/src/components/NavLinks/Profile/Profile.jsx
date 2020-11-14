@@ -5,6 +5,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Dialogs from "../Dialogs/Dialogs";
 
 export default function Profile(props) {
+
     return (
         <div className="profile">
             <ProfileInfo/>

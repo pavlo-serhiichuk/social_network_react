@@ -4,7 +4,7 @@ import {NavLink, Router} from "react-router-dom";
 
 
 export default function Navigation(props) {
-let si = props.state
+    let si = props.state
 // debugger
     return (
         <nav className={s.navigation}>
@@ -15,9 +15,11 @@ let si = props.state
                 <NavLink to="/news">{si.news}</NavLink>
                 <NavLink to="/settings" activeClassName={s.active}>{si.settings}</NavLink>
             </div>
-            <div className={s.addEvent}>
-                Add event
-                Add event
+            <div className={s.addEventContainer}>
+                <button className={s.addEvent}>
+                    <p>Add event</p>
+                    <p>+</p>
+                </button>
             </div>
         </nav>
     )

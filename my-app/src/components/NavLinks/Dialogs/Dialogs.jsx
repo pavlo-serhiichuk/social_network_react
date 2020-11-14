@@ -2,21 +2,18 @@ import React from 'react'
 import './Dialogs.css'
 import Message from './Message/Message'
 import UserDialog from './UserDialog/UserDialog'
+import {addMessage, updateMessage} from "../../../Redux/dialog_producer";
 
 export default function Dialogs(props) {
-    // debugger
     let AllDialogs = props.dialogsPage.dialogs.map(d => <UserDialog key={d.id} id={d.id} name={d.name}/>)
     let AllMessages = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message}/>)
-    let messageInfo = React.createRef()
 
     const addNewMessage = () => {
-        let text = messageInfo.current.value
-        props.dispatch({type: 'ADD-MESSAGE', message: text})
+        props.dispatch(addMessage())
     }
 
-    let onMessageChange = () => {
-        let text = messageInfo.current.value
-        props.dispatch({type: 'UPDATE-MESSAGE', newText: text})
+    let onNewMessageChange = (e) => {
+        props.dispatch(updateMessage(e.target.value))
     }
 
     return (
@@ -28,12 +25,11 @@ export default function Dialogs(props) {
                 <div className="messages">
                     <div>
                         <img className="little-avatar"
-                             src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"/>
+                             src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt=""/>
                     </div>
                     <div className="create-text">
                         <input className='enter-post' type="text" placeholder='Share your thoughts...'
-                               ref={messageInfo}
-                               onChange={onMessageChange}
+                               onChange={onNewMessageChange}
                                 value={props.dialogsPage.newMessageText}
                         />
                         <button onClick={addNewMessage} className='share-post fas fa-paper-plane'>
