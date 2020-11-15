@@ -5,15 +5,17 @@ import UserDialog from './UserDialog/UserDialog'
 import {addMessage, updateMessage} from "../../../Redux/dialog_producer";
 
 export default function Dialogs(props) {
-    let AllDialogs = props.dialogsPage.dialogs.map(d => <UserDialog key={d.id} id={d.id} name={d.name}/>)
-    let AllMessages = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message}/>)
+    let state = props.store.getState().dialogsPage
+    let AllDialogs = state.dialogs.map(d => <UserDialog key={d.id} id={d.id} name={d.name}/>)
+    let AllMessages = state.messages.map(m => <Message key={m.id} message={m.message}/>)
 
     const addNewMessage = () => {
-        props.dispatch(addMessage())
+        props.addMessage()
     }
 
     let onNewMessageChange = (e) => {
-        props.dispatch(updateMessage(e.target.value))
+        // debugger
+        props.updateMessage(e.target.value)
     }
 
     return (
@@ -30,7 +32,7 @@ export default function Dialogs(props) {
                     <div className="create-text">
                         <input className='enter-post' type="text" placeholder='Share your thoughts...'
                                onChange={onNewMessageChange}
-                                value={props.dialogsPage.newMessageText}
+                                value={state.newMessageText}
                         />
                         <button onClick={addNewMessage} className='share-post fas fa-paper-plane'>
                         </button>

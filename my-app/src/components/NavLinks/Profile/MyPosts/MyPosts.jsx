@@ -1,18 +1,18 @@
 import React from 'react'
 import './MyPosts.css'
 import Post from "./MyPost/Post";
-import {addPostActionCreator, updateNewPostText} from "../../../../Redux/profile_reducer";
 
 export default function MyPosts(props) {
-    // debugger
-    const AllPosts = props.posts.map(post => <Post key={post.id} id={post.id} info={post.info}/>)
+    let state = props.store.getState().profilePage
 
-    function addNewPost() {
-        props.dispatch(addPostActionCreator())
+    const AllPosts = state.posts.map(post => <Post key={post.id} id={post.id} info={post.info}/>)
+
+    function onAddPost() {
+        props.addPost()
     }
 
     const onPostChange = (e) => {
-        props.dispatch(updateNewPostText(e.target.value))
+        props.updateNewPostText(e.target.value)
     }
 
 
@@ -22,9 +22,9 @@ export default function MyPosts(props) {
                 <input className='enter-post'
                        placeholder="Share your thoughts..."
                        onChange={onPostChange}
-                       value={props.newPostText}
+                       value={state.newPostText}
                 />
-                <button onClick={addNewPost} className='share-post fas fa-paper-plane'>
+                <button onClick={onAddPost} className='share-post fas fa-paper-plane'>
                 </button>
             </div>
             <div className="posts">

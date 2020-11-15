@@ -39,79 +39,72 @@ let store = {
             settings: 'Settings',
         }
     },
-    _rerenderRoot() {},
+    _rerenderRoot() {
+    },
     getState() {
         return this._state
     },
-    subscribe(observer){
+    subscribe(observer) {
         this._rerenderRoot = observer // паттерн observer или addEventListener
     },
     dispatch(action) { //action - объект { type: 'ADD-POST'// }
         this._state.profilePage = profileReducer(this._state.profilePage, action)
-
-
         this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
         this._rerenderRoot(this._state)
-    }}
-
-
-
-
+    }
+}
 
 export default store
 
 window.store = store
 
 // _addPost() {
-    //     const newPost = {
-    //         id: Math.random(),
-    //         info: this._state.profilePage.newPostText,
-    //         likeCount: 0,
-    //     };
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-    //     this._rerenderRoot(this._state)
-    // },
-    // _updateNewPostText(newText) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._rerenderRoot(this._state)
-    // },
-    // _addMessage() {
-    //     let newMessage = {
-    //         id: Math.random(),
-    //         message: this._state.dialogsPage.newMessageText
-    //     }
-    //     this._state.dialogsPage.messages.push(newMessage)
-    //     this._state.dialogsPage.newMessageText = ''
-    //     this._rerenderRoot(this._state)
-    // },
-    // _updateMessage(newText) {
-    //     this._state.dialogsPage.newMessageText = newText
-    //     this._rerenderRoot(this._state)
-    // },
+//     const newPost = {
+//         id: Math.random(),
+//         info: this._state.profilePage.newPostText,
+//         likeCount: 0,
+//     };
+//     this._state.profilePage.posts.push(newPost)
+//     this._state.profilePage.newPostText = ''
+//     this._rerenderRoot(this._state)
+// },
+// _updateNewPostText(newText) {
+//     this._state.profilePage.newPostText = newText
+//     this._rerenderRoot(this._state)
+// },
+// _addMessage() {
+//     let newMessage = {
+//         id: Math.random(),
+//         message: this._state.dialogsPage.newMessageText
+//     }
+//     this._state.dialogsPage.messages.push(newMessage)
+//     this._state.dialogsPage.newMessageText = ''
+//     this._rerenderRoot(this._state)
+// },
+// _updateMessage(newText) {
+//     this._state.dialogsPage.newMessageText = newText
+//     this._rerenderRoot(this._state)
+// },
 
 
-
-        // if(action.type === 'ADD-POST') {
-        //     this._addPost()
-        // } else if(action.type === 'UPDATE-NEW-POST-TEXT') {
-        //     this._updateNewPostText(action.newTextOfPost)
-        // } else if(action.type === 'ADD-MESSAGE') {
-        //     this._addMessage(action.message)
-        // } else if(action.type === 'UPDATE-MESSAGE') {
-        //     this._updateMessage(action.newText)
-        // }
-
-
+// if(action.type === 'ADD-POST') {
+//     this._addPost()
+// } else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+//     this._updateNewPostText(action.newTextOfPost)
+// } else if(action.type === 'ADD-MESSAGE') {
+//     this._addMessage(action.message)
+// } else if(action.type === 'UPDATE-MESSAGE') {
+//     this._updateMessage(action.newText)
+// }
 
 
 //store - OOP
 
- //икапсуляция - это скрытие отдельных деталей
+//икапсуляция - это скрытие отдельных деталей
 //наследование - решает проблему дублирования кода
- //полиморфизм - работа с объектом с помощью общих оденаковых команд(методов), без разбора отличий
+//полиморфизм - работа с объектом с помощью общих оденаковых команд(методов), без разбора отличий
 
 //callback - это функция которую передают и вызывают при необходимости
 

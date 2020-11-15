@@ -3,16 +3,14 @@ import './Profile.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Dialogs from "../Dialogs/Dialogs";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 export default function Profile(props) {
 
     return (
         <div className="profile">
             <ProfileInfo/>
-            <MyPosts posts={props.profilePage.posts}
-                     newPostText={props.profilePage.newPostText}
-                     dispatch={props.dispatch}
-            />
+            <MyPostsContainer store={props.store}/>
         </div>
     )
 }
