@@ -14,23 +14,30 @@ let initialState = {
         {id: 2, message: 'Hello, everyone!'},
         {id: 3, message: 'Hi, guys!'},
     ],
-}
+};
 
- const dialogReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case ADD_MESSAGE:
-            let body = state.newMessageText
-            state.messages.push({id: Math.random(), message: body})
-            state.newMessageText = ''
-            return state
-        case UPDATE_MESSAGE:
-            state.newMessageText = action.newText
-            return state
+const dialogReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_MESSAGE: {
+            debugger
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
+            stateCopy.messages.push({id: Math.random(), message: state.newMessageText})
+            stateCopy.newMessageText = ''
+            return stateCopy
+        }
+        case UPDATE_MESSAGE: {
+            let stateCopy = {...state}
+            stateCopy.newMessageText = action.newText
+            return stateCopy
+        }
+
         default:
             return state
-}}
+    }
+}
 
-export const addMessage = (text) =>({type: ADD_MESSAGE, message: text})
+export const addMessage = (text) => ({type: ADD_MESSAGE, message: text})
 export const updateMessage = (text) => ({type: UPDATE_MESSAGE, newText: text})
 
- export default dialogReducer
+export default dialogReducer

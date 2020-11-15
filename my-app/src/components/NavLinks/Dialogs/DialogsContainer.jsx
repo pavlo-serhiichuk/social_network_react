@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 const mapStateToProps = (state) => ({dialogsPage: state.dialogsPage})
 
 const mapDispatchToProps = (dispatch) => {
-    debugger
     return {
         updateMessage(e){ return dispatch(updateMessage(e)) },
         addMessage() { return dispatch(addMessage()) },

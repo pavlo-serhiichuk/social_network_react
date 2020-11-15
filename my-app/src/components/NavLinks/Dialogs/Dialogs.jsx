@@ -9,6 +9,7 @@ export default function Dialogs(props) {
     let AllMessages = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message}/>)
 
     const addNewMessage = () => {
+        // debugger
         props.addMessage()
     }
 
