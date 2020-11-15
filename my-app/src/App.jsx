@@ -12,18 +12,15 @@ import DialogsContainer from "./components/NavLinks/Dialogs/DialogsContainer";
 
 
 function App(props) { //props - объект для передачи данных
+    // debugger
     return (
             <div className="wrapper">
                 <Header/>
                 <div className="wrapper_content">
-                    <Navigation state={props.state.sidebar}/>
+                    <Navigation />
                     <div>
-                        <Route path="/profile" render={() => <Profile store={props.store}/>}/>
-                        <Route path="/dialogs" render={() => <DialogsContainer store={props.store}
-                            // dialogsPage={props.state.dialogsPage}
-                            // dispatch={props.dispatch}
-                        />}
-                        />
+                        <Route path="/profile" render={() => <Profile />}/>
+                        <Route path="/dialogs" render={() => <DialogsContainer />} />
                         <Route path="/music" render={() => <Music/>}/>
                         <Route path="/news" render={() => <News/>}/>
                         <Route path="/settings" render={() => <Settings/>}/>
