@@ -3,12 +3,13 @@ import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import {Route} from "react-router-dom";
 import Profile from "./components/NavLinks/Profile/Profile";
-import Dialogs from "./components/NavLinks/Dialogs/Dialogs";
+import Users from "./components/NavLinks/Users/Users";
 import Music from "./components/NavLinks/Music/Music";
 import News from "./components/NavLinks/News/News";
 import Settings from "./components/NavLinks/Settings/Settings";
 import React from "react";
 import DialogsContainer from "./components/NavLinks/Dialogs/DialogsContainer";
+import UsersContainer from "./components/NavLinks/Users/UsersContainer";
 
 
 function App(props) { //props - объект для передачи данных
@@ -20,6 +21,7 @@ function App(props) { //props - объект для передачи данны�
                     <Navigation />
                     <div>
                         <Route path="/profile" render={() => <Profile />}/>
+                        <Route path="/users" render={() => <UsersContainer />}/>
                         <Route path="/dialogs" render={() => <DialogsContainer />} />
                         <Route path="/music" render={() => <Music/>}/>
                         <Route path="/news" render={() => <News/>}/>

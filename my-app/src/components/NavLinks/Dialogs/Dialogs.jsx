@@ -2,7 +2,6 @@ import React from 'react'
 import './Dialogs.css'
 import Message from './Message/Message'
 import UserDialog from './UserDialog/UserDialog'
-import {addMessage, updateMessage} from "../../../Redux/dialog_producer";
 
 export default function Dialogs(props) {
     let AllDialogs = props.dialogsPage.dialogs.map(d => <UserDialog key={d.id} id={d.id} name={d.name}/>)

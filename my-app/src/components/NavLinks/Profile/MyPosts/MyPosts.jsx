@@ -3,11 +3,11 @@ import './MyPosts.css'
 import Post from "./MyPost/Post";
 
 export default function MyPosts(props) {
-debugger
+// debugger
     const AllPosts = props.posts.map(post => <Post key={post.id} id={post.id} info={post.info}/>)
 
     function onAddPost() {
-        // debugger
+        debugger
         props.addPost()
     }
 

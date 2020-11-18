@@ -1,0 +1,13 @@
+.user{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    border-bottom: 1px solid silver;
+    margin: 5px;
+    padding: 10px;
+}
+
+.avatarInD{
+    width: 100px;
+    border-radius: 50%;
+
+}

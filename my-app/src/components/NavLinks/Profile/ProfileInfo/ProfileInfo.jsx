@@ -24,7 +24,7 @@ export default function ProfileInfo() {
         <div className="profile-info">
             <div>
                 <img className="avatar"
-                     src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
+                     src="../../../../assets/images/user.png"
                      alt=""/>
             </div>
             <UserInfo city="Nebraska" birthday={userBirthday} status="In a search"/>
