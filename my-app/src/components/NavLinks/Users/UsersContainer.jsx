@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-    followAC,
-    unfollowAC,
-    setUsersAC,
-    setCurrentPageAC,
-    setTotalCountAC,
-    toggleIsFatchingAC
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalCount,
+    toggleIsFatching
 } from "../../../Redux/users_reducer";
 import {connect} from 'react-redux'
 import * as axios from "axios";
@@ -38,7 +38,7 @@ class UsersContainer extends React.Component {
     render() {
         debugger
         return <>
-           <Preloader isFatching={this.props.isFatching}/>
+            <Preloader isFatching={this.props.isFatching}/>
             <Users pageSize={this.props.pageSize}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPage={this.props.currentPage}
@@ -61,27 +61,9 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onFollow(userId) {
-            dispatch(followAC(userId))
-        },
-        onUnfollow(userId) {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers(users) {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage(pageNumber) {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalCount(totalCount) {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        toggleIsFatching(totalCount) {
-            dispatch(toggleIsFatchingAC(totalCount))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps,
+    {
+        follow, unfollow, setUsers,
+        setCurrentPage, setTotalCount,
+        toggleIsFatching
+    })(UsersContainer)
