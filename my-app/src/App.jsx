@@ -3,7 +3,6 @@ import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import {Route} from "react-router-dom";
 import Profile from "./components/NavLinks/Profile/Profile";
-import Users from "./components/NavLinks/Users/Users";
 import Music from "./components/NavLinks/Music/Music";
 import News from "./components/NavLinks/News/News";
 import Settings from "./components/NavLinks/Settings/Settings";
