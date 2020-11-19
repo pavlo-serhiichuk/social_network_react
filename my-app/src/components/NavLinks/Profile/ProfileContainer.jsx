@@ -5,8 +5,9 @@ import * as axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../../Redux/profile_reducer";
 
-class ProfileContainer extends React.Component{
-    componentDidMount() {
+class ProfileContainer extends React.Component {
+    //ProfileContainer создается единажды как классовая компонента, делая(грязную работу) запрос на сервер
+        componentDidMount() {
         // debugger
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
             .then(response => {
@@ -29,4 +30,12 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 })
 
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer)
+let WithUrlDataContainerComponent =  withRouter(ProfileContainer)
+// withRouter вощвращает новую компоненту,
+// которая отрисует ProfileContainer,
+// но в нее еще закинутся данные из url
+
+export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)
+//оборачиваем ProfileContainer connect - ом,
+// который делает(грязную работу) запросы к стору и получая от него коллбеки.
+// Connect возвращает новую компоненту, которая отрисовывает ProfileContainer но данные закинет в нее из стора
