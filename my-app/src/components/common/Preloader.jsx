@@ -1,9 +1,9 @@
 import React from 'react'
 import preloader from "../../assets/images/rolling.svg";
 import s from './common.module.css'
-const Preloader = (props) => {
+const Preloader = () => {
     return (
-        <div> { props.isFatching ? <img className={s.preloader} src={preloader}/> : null } </div>
+        <div><img className={s.preloader} src={preloader}/></div>
     )
 }
 
