@@ -9,6 +9,7 @@ import Settings from "./components/NavLinks/Settings/Settings";
 import React from "react";
 import DialogsContainer from "./components/NavLinks/Dialogs/DialogsContainer";
 import UsersContainer from "./components/NavLinks/Users/UsersContainer";
+import ProfileContainer from "./components/NavLinks/Profile/ProfileContainer";
 
 
 function App(props) { //props - объект для передачи данных
@@ -19,7 +20,7 @@ function App(props) { //props - объект для передачи данны�
                 <div className="wrapper_content">
                     <Navigation />
                     <div>
-                        <Route path="/profile" render={() => <Profile />}/>
+                        <Route path="/profile" render={() => <ProfileContainer />}/>
                         <Route path="/users" render={() => <UsersContainer />}/>
                         <Route path="/dialogs" render={() => <DialogsContainer />} />
                         <Route path="/music" render={() => <Music/>}/>
