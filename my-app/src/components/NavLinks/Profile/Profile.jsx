@@ -3,11 +3,14 @@ import './Profile.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-export default function Profile(props) {
+const Profile = (props) => {
+    // debugger
     return (
         <div className="profile">
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer />
         </div>
     )
 }
+
+export default Profile

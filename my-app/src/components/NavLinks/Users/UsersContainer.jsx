@@ -36,7 +36,6 @@ class UsersContainer extends React.Component {
     }
 
     render() {
-        debugger
         return <>
             { this.props.isFatching ? <Preloader/>: null }
             <Users pageSize={this.props.pageSize}

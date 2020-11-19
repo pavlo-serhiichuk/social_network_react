@@ -14,14 +14,13 @@ const Users = (props) => {
     return (
         <div>
             <div>
-                {pages.map(page => {
-                    return <span
+                {pages.map(page => <span key={Math.random()}
                         className={props.currentPage === page && s.selectedPage}
                         onClick={() => {
                             props.onPageChanged(page)
                         }}
                     >{page}</span>
-                })}
+                )}
             </div>
             {props.users.map(user => {
                 return (
