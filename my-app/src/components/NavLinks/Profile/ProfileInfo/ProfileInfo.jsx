@@ -5,7 +5,6 @@ import Preloader from "../../../common/Preloader";
 let userBirthday = new Date(1995, 11, 17).toLocaleDateString()
 
 const UserInfo = (props) => {
-    debugger
     return (
         <div>
             <div className='user-name'>{props.fullName}</div>

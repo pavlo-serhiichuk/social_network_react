@@ -1,4 +1,3 @@
-import React from 'react'
 import './Dialogs.css'
 import {addMessage, updateMessage} from "../../../Redux/dialog_producer";
 import Dialogs from "./Dialogs";
