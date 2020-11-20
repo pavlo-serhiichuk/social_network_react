@@ -8,42 +8,42 @@ import {
     toggleIsFatching
 } from "../../../Redux/users_reducer";
 import {connect} from 'react-redux'
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
+import {getUsers} from '../../../api/api'
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount = () => {
         this.props.toggleIsFatching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.toggleIsFatching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalCount(response.data.totalCount)
-            })
+        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.toggleIsFatching(false)
+            this.props.setUsers(data.items)
+            this.props.setTotalCount(data.totalCount)
+        })
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFatching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
+        getUsers(pageNumber, this.props.pageSize)
+            .then(data => {
+                // debugger
                 this.props.toggleIsFatching(false)
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(data.items)
             })
     }
 
     render() {
         return <>
-            { this.props.isFatching ? <Preloader/>: null }
+            {this.props.isFatching ? <Preloader/> : null}
             <Users pageSize={this.props.pageSize}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
-                   onFullow={this.props.onFullow}
-                   onUnfullow={this.props.onUnfullow}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
                    onPageChanged={this.onPageChanged}
             />
         </>

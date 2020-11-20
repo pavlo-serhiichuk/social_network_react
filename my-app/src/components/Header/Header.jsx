@@ -3,7 +3,6 @@ import './Header.css'
 import {NavLink} from "react-router-dom";
 
 export default function Header(props) {
-    debugger
     return (
         <div className="header">
             <div className="header-content">
