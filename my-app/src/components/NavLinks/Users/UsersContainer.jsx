@@ -10,14 +10,14 @@ import {
 import {connect} from 'react-redux'
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
-import {getUsers} from '../../../api/api'
+import { userAPI } from '../../../api/api'
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount = () => {
         this.props.toggleIsFatching(true)
-        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFatching(false)
             this.props.setUsers(data.items)
             this.props.setTotalCount(data.totalCount)
@@ -27,7 +27,7 @@ class UsersContainer extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFatching(true)
-        getUsers(pageNumber, this.props.pageSize)
+        userAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 // debugger
                 this.props.toggleIsFatching(false)
