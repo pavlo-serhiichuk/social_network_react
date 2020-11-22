@@ -1,3 +1,4 @@
+import {userAPI} from "../api/api";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -70,4 +71,15 @@ export const toggleFollowing = (followingInProcess, userId) => ({type: TOGGLE_FO
 
 export default usersReducer
 
-// export const
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFatching(true))
+
+        userAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFatching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalCount(data.totalCount))
+        })
+    }
+}

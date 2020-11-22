@@ -5,7 +5,8 @@ import {
     setUsers,
     setCurrentPage,
     setTotalCount,
-    toggleIsFatching, toggleFollowing
+    toggleIsFatching, toggleFollowing,
+    getUsersThunkCreator
 } from "../../../Redux/users_reducer";
 import {connect} from 'react-redux'
 import Users from "./Users";
@@ -16,28 +17,15 @@ import { userAPI } from '../../../api/api'
 class UsersContainer extends React.Component {
 
     componentDidMount = () => {
-        this.props.toggleIsFatching(true)
-
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFatching(false)
-            this.props.setUsers(data.items)
-            this.props.setTotalCount(data.totalCount)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
-        this.props.toggleIsFatching(true)
-
-        userAPI.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.toggleIsFatching(false)
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
-        // debugger
         return <>
             {this.props.isFatching ? <Preloader/> : null}
 
@@ -69,7 +57,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
     {
-        follow, unfollow, setUsers,
-        setCurrentPage, setTotalCount,
-        toggleIsFatching, toggleFollowing
+        follow, unfollow,
+        setCurrentPage,
+         toggleFollowing,
+        getUsers: getUsersThunkCreator,
+
     })(UsersContainer)
