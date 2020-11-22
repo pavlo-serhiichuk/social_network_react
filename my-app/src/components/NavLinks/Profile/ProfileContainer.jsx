@@ -1,10 +1,10 @@
 import React from 'react'
 import './Profile.css'
 import Profile from "./Profile";
-import * as axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../../Redux/profile_reducer";
 import {withRouter} from "react-router-dom";
+import {userAPI} from "../../../api/api";
 
 class ProfileContainer extends React.Component {
     //ProfileContainer создается единажды как классовая
@@ -16,11 +16,8 @@ class ProfileContainer extends React.Component {
                 userId = 2
             }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                // debugger
-                this.props.setUserProfile(response.data)
-            })
+        userAPI.getProfile(userId).then(data => {this.props.setUserProfile(data)})
+            //запрос происходит на DAL уровне'
     }
 
     render() {

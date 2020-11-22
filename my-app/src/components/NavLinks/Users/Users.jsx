@@ -4,8 +4,8 @@ import './User/User.css'
 import UsersContainer from "./UsersContainer";
 import userPhoto from '../../../assets/images/user.png'
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
 import {deleteFollow, postFollow, userAPI} from "../../../api/api";
+import {toggleFollowing} from "../../../Redux/users_reducer";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -13,14 +13,13 @@ const Users = (props) => {
     for (let i = 1; i < 20; i++) {
         pages.push(i)
     }
+    debugger
     return (
         <div>
             <div>
                 {pages.map(page => <span key={Math.random()}
                                          className={props.currentPage === page && s.selectedPage}
-                                         onClick={() => {
-                                             props.onPageChanged(page)
-                                         }}
+                                         onClick={() => props.onPageChanged(page)}
                     >{page}</span>
                 )}
             </div>
@@ -35,22 +34,33 @@ const Users = (props) => {
                             </NavLink>
                             <div>
                                 {user.followed
-                                    ? <button onClick={() => {
-                                        userAPI.deleteFollow(user.id).then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                props.unfollow(user.id)
-                                            }
-                                        })
+                                    ? <button
+                                              // disabled={typeof !props.followingInProcess}
+                                              onClick={() => {
+                                                  debugger
+                                                  // props.toggleFollowing(false, user.id)
+                                                  userAPI.deleteFollow(user.id).then(response => {
+                                                      if (response.data.resultCode === 0) {
+                                                          props.unfollow(user.id)
+                                                      }
+                                                      // props.toggleFollowing(false, user.id)
+                                                  })
+                                              }
+                                              }
 
-                                    }}>Unfollow</button>
-                                    : <button onClick={() => {
-                                        userAPI.postFollow(user.id).then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                props.follow(user.id)
-                                            }
-                                        })
-
-                                    }}>Follow</button>
+                                    >Unfollow</button>
+                                    : <button
+                                              onClick={() => {
+                                                  // disabled={typeof !props.followingInProcess}
+                                                  // props.toggleFollowing(false, user.id)
+                                                  debugger
+                                                  userAPI.postFollow(user.id).then(response => {
+                                                      if (response.data.resultCode === 0) {
+                                                          props.follow(user.id)
+                                                      }
+                                                      // props.toggleFollowing(false, user.id)
+                                                  })
+                                              }}>Follow</button>
                                 }
                             </div>
                         </div>
