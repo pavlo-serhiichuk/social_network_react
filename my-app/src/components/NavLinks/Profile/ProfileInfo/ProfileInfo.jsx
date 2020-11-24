@@ -1,6 +1,7 @@
 import React from 'react'
 import './ProfileInfo.css'
 import Preloader from "../../../common/Preloader";
+import ProfileStatus from "./Status/ProfileStatus";
 
 let userBirthday = new Date(1995, 11, 17).toLocaleDateString()
 
@@ -10,7 +11,7 @@ const UserInfo = (props) => {
             <div className='user-name'>{props.fullName}</div>
             <div className="user-info">
                 <div className="info-field">Status:</div>
-                <div className="status" type="text">{props.aboutMe}</div>
+                <ProfileStatus status={"My current status"}/>
                 <div className="info-field">Job status:</div>
                 <div className="city">{props.lookingForAJobDescription}</div>
                 <div className="info-field">VK:</div>

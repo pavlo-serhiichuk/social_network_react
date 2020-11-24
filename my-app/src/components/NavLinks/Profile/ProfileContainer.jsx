@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {getUserProfile} from "../../../Redux/profile_reducer";
 import {Redirect, withRouter} from "react-router-dom";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     //ProfileContainer создается единажды как классовая
@@ -36,18 +37,19 @@ class ProfileContainer extends React.Component {
 //     return <ProfileContainer {...this.props}/>
 // }
 
-let authRedirectedProfile = withAuthRedirect(ProfileContainer)
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
 })
 
-let WithUrlDataContainerComponent = withRouter(authRedirectedProfile)
+export default compose(connect(mapStateToProps, {getUserProfile}),
+    withRouter,
+    withAuthRedirect)(ProfileContainer)
+
 // withRouter вощвращает новую компоненту,
 // которая отрисует ProfileContainer,
 // но в нее еще закинутся данные из url
 
-export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent)
 //оборачиваем ProfileContainer connect - ом,
 // который делает(грязную работу) запросы к стору и получая от него коллбеки.
 // Connect возвращает новую компоненту, которая отрисовывает ProfileContainer но данные закинет в нее из стора

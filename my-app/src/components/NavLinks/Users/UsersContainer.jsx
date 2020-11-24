@@ -10,6 +10,7 @@ import Users from "./Users";
 import Preloader from "../../common/Preloader";
 import {Redirect} from "react-router-dom";
 import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -23,6 +24,7 @@ class UsersContainer extends React.Component {
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize)
     }
+
     render() {
 // debugger
         return <>
@@ -56,9 +58,9 @@ const mapStateToProps = (state) => {
     }
 };
 
-let withRedirect = withAuthRedirect(UsersContainer)
-
-export default connect(mapStateToProps, {
+export default compose(
+    connect(mapStateToProps, {
         follow, unfollow, setCurrentPage,
         getUsers: getUsersThunkCreator
-    })(withRedirect)
+    }),
+    withAuthRedirect)(UsersContainer)
