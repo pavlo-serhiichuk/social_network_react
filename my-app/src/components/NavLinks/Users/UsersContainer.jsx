@@ -2,16 +2,13 @@ import React from 'react';
 import {
     follow,
     unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalCount,
-    toggleIsFatching, toggleFollowing,
     getUsersThunkCreator
 } from "../../../Redux/users_reducer";
 import {connect} from 'react-redux'
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
-import { userAPI } from '../../../api/api'
+import {Redirect} from "react-router-dom";
 
 
 class UsersContainer extends React.Component {
@@ -21,11 +18,12 @@ class UsersContainer extends React.Component {
     }
 
     onPageChanged = (pageNumber) => {
+
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize)
     }
-
     render() {
+// debugger
         return <>
             {this.props.isFatching ? <Preloader/> : null}
 
@@ -38,6 +36,7 @@ class UsersContainer extends React.Component {
                    onPageChanged={this.onPageChanged}
                    followingInProcess={this.props.followingInProcess}
                    toggleFollowing={this.props.toggleFollowing}
+                   isAuth={this.props.isAuth}
 
             />
         </>
@@ -52,14 +51,11 @@ const mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFatching: state.usersPage.isFatching,
         followingInProcess: state.usersPage.followingInProcess,
+        isAuth: state.auth.isAuth
     }
 };
 
-export default connect(mapStateToProps,
-    {
-        follow, unfollow,
-        setCurrentPage,
-         toggleFollowing,
-        getUsers: getUsersThunkCreator,
-
+export default connect(mapStateToProps, {
+        follow, unfollow, setCurrentPage,
+        getUsers: getUsersThunkCreator
     })(UsersContainer)

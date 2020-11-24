@@ -3,7 +3,10 @@ import {addMessage, updateMessage} from "../../../Redux/dialog_producer";
 import Dialogs from "./Dialogs";
 import {connect} from 'react-redux'
 
-const mapStateToProps = (state) => ({dialogsPage: state.dialogsPage})
+const mapStateToProps = (state) => ({
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth
+})
 
 const mapDispatchToProps = (dispatch) => {
     return {

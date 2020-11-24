@@ -14,7 +14,7 @@ let initialState = {
     totalUsersCount: 21,
     currentPage: 2,
     isFatching: false,
-    followingInProcess: [2132]
+    followingInProcess: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -61,8 +61,8 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const follow = (userId) => ( {type: FOLLOW, userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId})
+export const followSuccess = (userId) => ( {type: FOLLOW, userId});
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, count: totalCount})
@@ -71,13 +71,37 @@ export const toggleFollowing = (followingInProcess, userId) => ({type: TOGGLE_FO
 
 export default usersReducer
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-
+export const follow = (userId) => {
     return (dispatch) => {
-        dispatch(toggleIsFatching(true))
+        dispatch(toggleFollowing(true, userId))
+        debugger
+        userAPI.postFollow(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleFollowing(false, userId))
+        })
+    }
+}
 
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId))
+        // debugger
+        userAPI.postFollow(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleFollowing(false, userId))
+        })
+    }
+}
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFatching(false))
         userAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(toggleIsFatching(false))
+            dispatch(toggleIsFatching(true))
             dispatch(setUsers(data.items))
             dispatch(setTotalCount(data.totalCount))
         })

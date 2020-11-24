@@ -8,10 +8,7 @@ export default function Header(props) {
             <div className="header-content">
                 <div className="title">Spirits</div>
                 <div className="loginBlock">
-                    {props.isAuth
-                        ? props.login
-                        : <NavLink to={'/login'}>Login</NavLink>
-                    }
+                    {props.isAuth ? props.login: <NavLink to={'/login'}>Login</NavLink>}
                 </div>
             </div>
         </div>

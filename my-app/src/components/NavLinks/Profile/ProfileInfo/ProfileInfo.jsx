@@ -15,7 +15,6 @@ const UserInfo = (props) => {
                 <div className="city">{props.lookingForAJobDescription}</div>
                 <div className="info-field">VK:</div>
                 <div className="city"><a href={"https://" + props.contacts.vk}>{props.contacts.vk}</a></div>
-
             </div>
         </div>
     )

@@ -1,11 +1,8 @@
 import React from 'react'
 import * as s from './Users.module.css'
 import './User/User.css'
-import UsersContainer from "./UsersContainer";
 import userPhoto from '../../../assets/images/user.png'
-import {NavLink} from "react-router-dom";
-import {deleteFollow, postFollow, userAPI} from "../../../api/api";
-import {toggleFollowing} from "../../../Redux/users_reducer";
+import {NavLink, Redirect} from "react-router-dom";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -13,7 +10,7 @@ const Users = (props) => {
     for (let i = 1; i < 20; i++) {
         pages.push(i)
     }
-    debugger
+    // debugger
     return (
         <div>
             <div>
@@ -24,6 +21,8 @@ const Users = (props) => {
                 )}
             </div>
             {props.users.map(user => {
+                if(!props.isAuth) return <Redirect to="/login" />
+
                 return (
                     <div className="user" key={user.id}>
                         <div className='follow'>
@@ -35,32 +34,17 @@ const Users = (props) => {
                             <div>
                                 {user.followed
                                     ? <button
-                                              // disabled={typeof !props.followingInProcess}
-                                              onClick={() => {
-                                                  debugger
-                                                  // props.toggleFollowing(false, user.id)
-                                                  userAPI.deleteFollow(user.id).then(response => {
-                                                      if (response.data.resultCode === 0) {
-                                                          props.unfollow(user.id)
-                                                      }
-                                                      // props.toggleFollowing(false, user.id)
-                                                  })
-                                              }
-                                              }
-
+                                        disabled={props.followingInProcess.some(id => id === user.id)}
+                                        onClick={() => {
+                                            props.unfollow(user.id)
+                                        }}
                                     >Unfollow</button>
                                     : <button
-                                              onClick={() => {
-                                                  // disabled={typeof !props.followingInProcess}
-                                                  // props.toggleFollowing(false, user.id)
-                                                  debugger
-                                                  userAPI.postFollow(user.id).then(response => {
-                                                      if (response.data.resultCode === 0) {
-                                                          props.follow(user.id)
-                                                      }
-                                                      // props.toggleFollowing(false, user.id)
-                                                  })
-                                              }}>Follow</button>
+                                        disabled={props.followingInProcess.some(id => id === user.id)}
+                                        onClick={() => {
+                                            props.follow(user.id)
+                                        }}
+                                    >Follow</button>
                                 }
                             </div>
                         </div>

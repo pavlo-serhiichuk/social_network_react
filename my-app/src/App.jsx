@@ -9,6 +9,7 @@ import DialogsContainer from "./components/NavLinks/Dialogs/DialogsContainer";
 import UsersContainer from "./components/NavLinks/Users/UsersContainer";
 import ProfileContainer from "./components/NavLinks/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/NavLinks/Login/Login";
 
 
 function App(props) { //props - объект для передачи данных
@@ -25,6 +26,7 @@ function App(props) { //props - объект для передачи данны�
                         <Route path="/music" render={() => <Music/>}/>
                         <Route path="/news" render={() => <News/>}/>
                         <Route path="/settings" render={() => <Settings/>}/>
+                        <Route path="/login" render={() => <Login/>}/>
                     </div>
                 </div>
             </div>
