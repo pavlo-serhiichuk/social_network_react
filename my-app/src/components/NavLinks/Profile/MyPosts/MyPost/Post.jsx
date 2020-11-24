@@ -27,7 +27,7 @@ export default function Post(props) {
         <div className="post">
             <div>
                 <img className="little-avatar"
-                     src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"/>
+                     src="https://www.pngkey.com/png/detail/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt=""/>
             </div>
             <div>
                 John Johnson

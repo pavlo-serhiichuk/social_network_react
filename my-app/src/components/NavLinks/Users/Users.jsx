@@ -5,7 +5,7 @@ import userPhoto from '../../../assets/images/user.png'
 import {NavLink, Redirect} from "react-router-dom";
 
 const Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
     for (let i = 1; i < 20; i++) {
         pages.push(i)
