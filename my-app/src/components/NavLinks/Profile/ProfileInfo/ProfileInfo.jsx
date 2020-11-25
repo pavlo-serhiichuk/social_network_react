@@ -2,6 +2,7 @@ import React from 'react'
 import './ProfileInfo.css'
 import Preloader from "../../../common/Preloader";
 import ProfileStatus from "./Status/ProfileStatus";
+import avatar from '../../../../assets/images/user.png'
 
 let userBirthday = new Date(1995, 11, 17).toLocaleDateString()
 
@@ -32,7 +33,7 @@ const ProfileInfo = (props) => {
                 <img className="avatar"
                      src="../../../../assets/images/user.png"
                      alt=""/>
-                <img className="avatar" src={props.profile.data.photos.large}/>
+                <img className="avatar" src={true&&props.profile.data.photos.large || avatar}/>
             </div>
             <UserInfo city="Nebraska"
                       contacts={props.profile.data.contacts}

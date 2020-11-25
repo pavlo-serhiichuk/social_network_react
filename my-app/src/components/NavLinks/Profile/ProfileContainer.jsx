@@ -12,8 +12,9 @@ class ProfileContainer extends React.Component {
     // компонента, делая(грязную работу) запрос на сервер
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) userId = 2
+        if (!userId) userId = 12694
         this.props.getUserProfile(userId)
+
     }
 
     render() {
