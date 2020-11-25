@@ -6,6 +6,7 @@ import ProfileStatus from "./Status/ProfileStatus";
 let userBirthday = new Date(1995, 11, 17).toLocaleDateString()
 
 const UserInfo = (props) => {
+    // debugger
     return (
         <div>
             <div className='user-name'>{props.fullName}</div>
@@ -31,14 +32,14 @@ const ProfileInfo = (props) => {
                 <img className="avatar"
                      src="../../../../assets/images/user.png"
                      alt=""/>
-                <img className="avatar" src={props.profile.photos.large}/>
+                <img className="avatar" src={props.profile.data.photos.large}/>
             </div>
             <UserInfo city="Nebraska"
-                      contacts={props.profile.contacts}
-                      fullName={props.profile.fullName}
-                      lookingForAJobDescription={props.profile.lookingForAJobDescription}
+                      contacts={props.profile.data.contacts}
+                      fullName={props.profile.data.fullName}
+                      lookingForAJobDescription={props.profile.data.lookingForAJobDescription}
                       birthday={userBirthday}
-                      aboutMe={props.profile.aboutMe}/>
+                      aboutMe={props.profile.data.aboutMe}/>
         </div>
     )
 }

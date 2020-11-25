@@ -22,26 +22,23 @@ export const userAPI = {
     getAuth() {
         return instance.get(`auth/me`)
     },
-    getProfile(userId) {
-        return instance.get(`profile/${userId}`).then(responce => responce.data)
-    }
 }
-//
-// export const profileAPI = {
-//     getProfile(userId) {
-//         return instance.get(`profile/${userId}`)
-//     },
-//     getStatus(userId) {
-//         // debugger
-//         console.log(5)
-//         console.log(instance.get(`profile/status/${userId}`).then(response => response.data))
-//         return instance.get(`profile/status/${userId}`)
-//     },
-//     updateStatus(status) {
-//         return instance.put('profile/status', {status: status})
-//     }
-//
-// }
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
+    },
+    getStatus(userId) {
+        // debugger
+        console.log(5)
+        console.log(instance.get(`profile/status/${userId}`).then(response => response.data))
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status) {
+        return instance.put('profile/status', {status: status})
+    }
+
+}
 
 
 
