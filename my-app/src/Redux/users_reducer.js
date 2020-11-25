@@ -88,7 +88,7 @@ export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowing(true, userId))
         // debugger
-        userAPI.postFollow(userId).then(response => {
+        userAPI.deleteFollow(userId).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId))
             }
