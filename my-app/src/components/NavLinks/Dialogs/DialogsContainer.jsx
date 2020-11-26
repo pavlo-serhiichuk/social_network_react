@@ -1,10 +1,15 @@
-import React from 'react'
 import './Dialogs.css'
 import {addMessage, updateMessage} from "../../../Redux/dialog_producer";
 import Dialogs from "./Dialogs";
 import {connect} from 'react-redux'
+import {Redirect} from "react-router-dom";
+import React from "react";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
-const mapStateToProps = (state) => ({dialogsPage: state.dialogsPage})
+const mapStateToProps = (state) => ({
+    dialogsPage: state.dialogsPage,
+})
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -13,9 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-
-export default DialogsContainer
+export default compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirect)(Dialogs)
 
 //
 // export default function DialogsContainer(props) {

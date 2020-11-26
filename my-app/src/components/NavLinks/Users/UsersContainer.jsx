@@ -2,49 +2,45 @@ import React from 'react';
 import {
     follow,
     unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalCount,
-    toggleIsFatching
+    getUsersThunkCreator
 } from "../../../Redux/users_reducer";
 import {connect} from 'react-redux'
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
+import {Redirect} from "react-router-dom";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount = () => {
-        this.props.toggleIsFatching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.toggleIsFatching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalCount(response.data.totalCount)
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
+
         this.props.setCurrentPage(pageNumber)
-        this.props.toggleIsFatching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.toggleIsFatching(false)
-                this.props.setUsers(response.data.items)
-            })
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
+// debugger
         return <>
-            { this.props.isFatching ? <Preloader/>: null }
+            {this.props.isFatching ? <Preloader/> : null}
+
             <Users pageSize={this.props.pageSize}
                    totalUsersCount={this.props.totalUsersCount}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
-                   onFullow={this.props.onFullow}
-                   onUnfullow={this.props.onUnfullow}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
                    onPageChanged={this.onPageChanged}
+                   followingInProcess={this.props.followingInProcess}
+                   toggleFollowing={this.props.toggleFollowing}
+                   isAuth={this.props.isAuth}
+
             />
         </>
     }
@@ -56,13 +52,15 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFatching: state.usersPage.isFatching
+        isFatching: state.usersPage.isFatching,
+        followingInProcess: state.usersPage.followingInProcess,
+        isAuth: state.auth.isAuth
     }
 };
 
-export default connect(mapStateToProps,
-    {
-        follow, unfollow, setUsers,
-        setCurrentPage, setTotalCount,
-        toggleIsFatching
-    })(UsersContainer)
+export default compose(
+    connect(mapStateToProps, {
+        follow, unfollow, setCurrentPage,
+        getUsers: getUsersThunkCreator
+    }),
+    withAuthRedirect)(UsersContainer)

@@ -1,3 +1,4 @@
+import {userAPI} from "../api/api";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -5,13 +6,15 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_FOLLOWING_PROCESS = 'TOGGLE_FOLLOWING_PROCESS';
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 21,
     currentPage: 2,
-    isFatching: false
+    isFatching: false,
+    followingInProcess: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -46,16 +49,61 @@ const usersReducer = (state = initialState, action) => {
             return {...state, totalUsersCount: action.count}
             case TOGGLE_IS_FETCHING:
             return {...state, isFatching: action.isFatching}
+            case TOGGLE_FOLLOWING_PROCESS:
+                // debugger
+                return {...state,
+                    followingInProcess:
+                        action.followingInProcess ? [...state.followingInProcess, action.userId]
+                        : state.followingInProcess.filter(id => id !== action.userId)
+                }
         default:
             return state
     }
 }
 
-export const follow = (userId) => ( {type: FOLLOW, userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId})
+export const followSuccess = (userId) => ( {type: FOLLOW, userId});
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, count: totalCount})
 export const toggleIsFatching = (isFatching) => ({type: TOGGLE_IS_FETCHING, isFatching})
+export const toggleFollowing = (followingInProcess, userId) => ({type: TOGGLE_FOLLOWING_PROCESS, followingInProcess, userId})
 
 export default usersReducer
+
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId))
+        debugger
+        userAPI.postFollow(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toggleFollowing(false, userId))
+        })
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowing(true, userId))
+        // debugger
+        userAPI.deleteFollow(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toggleFollowing(false, userId))
+        })
+    }
+}
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFatching(false))
+        userAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFatching(true))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalCount(data.totalCount))
+        })
+    }
+}

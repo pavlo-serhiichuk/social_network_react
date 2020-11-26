@@ -11,4 +11,9 @@
     padding-top: 10px;
     margin: 0 auto;
     width: 850px;
+    grid-gap: 740px;
+}
+
+.loginBlock{
+    float: right;
 }

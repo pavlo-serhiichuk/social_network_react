@@ -7,7 +7,7 @@ export default function MyPosts(props) {
     const AllPosts = props.posts.map(post => <Post key={post.id} id={post.id} info={post.info}/>)
 
     function onAddPost() {
-        debugger
+        // debugger
         props.addPost()
     }
 

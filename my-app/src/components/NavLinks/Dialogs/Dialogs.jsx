@@ -2,6 +2,7 @@ import React from 'react'
 import './Dialogs.css'
 import Message from './Message/Message'
 import UserDialog from './UserDialog/UserDialog'
+import {Redirect} from "react-router-dom";
 
 export default function Dialogs(props) {
     let AllDialogs = props.dialogsPage.dialogs.map(d => <UserDialog key={d.id} id={d.id} name={d.name}/>)
@@ -16,6 +17,8 @@ export default function Dialogs(props) {
         props.updateMessage(e.target.value)
     }
 
+    // debugger
+    if(!props.isAuth) return <Redirect to="/login" />
     return (
         <div className="dialogs">
             <div className="users-dialogs">
